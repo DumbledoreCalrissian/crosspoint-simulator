@@ -11,6 +11,7 @@
 #include <HalPowerManager.h>
 #include <HalTiltSensor.h>
 #include <SDL.h>
+#include <SimLog.h>
 #include <SimulatorLifecycle.h>
 
 #include <atomic>
@@ -22,6 +23,12 @@
 
 GfxRenderer renderer;
 std::atomic<bool> quitRequested{false};
+
+// The input-only harness does not render screenshots or collect serial logs.
+void scheduleSimulatorScreenshot(const std::string &) {}
+namespace sim_log {
+bool findSince(unsigned long, const std::regex &, std::string *) { return false; }
+}
 
 static int presses[7] = {};
 static void frame() {
