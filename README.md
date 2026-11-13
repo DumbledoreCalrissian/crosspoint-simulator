@@ -455,9 +455,9 @@ quality, refresh behaviour, or memory pressure.
 > [!WARNING]
 > **Upstream compatibility:** The simulator mirrors interfaces used by Crosspoint. If Crosspoint adds or changes methods in a shared library and the simulator build reaches that code path, the simulator can fail to compile or link until a matching implementation or stub is added here. In many cases this is just a small no-op shim. Open a PR if the change tracks upstream CrossPoint, fills a gap in the emulated Arduino/ESP-IDF layer, or fixes the simulator itself. If the change only matches your own fork's HAL, maintain it in a fork of this repo instead. See [FORKING.md](FORKING.md).
 
-### Local Sudoku download QA
+### Sudoku download QA
 
-The local `feat/sudoku-download-tests` work uses libcurl for SecureHttpClient's
+The fork's `fix/picco-test-link` branch uses libcurl for SecureHttpClient's
 callback API, streaming body chunks and polling cancellation during headers and
 body reads. Install the host's libcurl development headers/library (macOS Command
 Line Tools already supply them), and link the consuming simulator build with
