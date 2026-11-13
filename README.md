@@ -454,3 +454,18 @@ quality, refresh behaviour, or memory pressure.
 
 > [!WARNING]
 > **Upstream compatibility:** The simulator mirrors interfaces used by Crosspoint. If Crosspoint adds or changes methods in a shared library and the simulator build reaches that code path, the simulator can fail to compile or link until a matching implementation or stub is added here. In many cases this is just a small no-op shim. Open a PR if the change tracks upstream CrossPoint, fills a gap in the emulated Arduino/ESP-IDF layer, or fixes the simulator itself. If the change only matches your own fork's HAL, maintain it in a fork of this repo instead. See [FORKING.md](FORKING.md).
+
+### Local Sudoku download QA
+
+The local `feat/sudoku-download-tests` work uses libcurl for SecureHttpClient's
+callback API, streaming body chunks and polling cancellation during headers and
+body reads. Install the host's libcurl development headers/library (macOS Command
+Line Tools already supply them), and link the consuming simulator build with
+`-lcurl`. Canned `CROSSPOINT_SIM_HTTP_ROUTES` and mock-root responses keep their
+existing offline behavior. ResumableFetch mirrors the SDK algorithm at the
+firmware's `8f7f007` pin; the firmware download contract test checks token parity.
+The SHA256 shim uses CommonCrypto on macOS and OpenSSL on Linux.
+`SimTransferInput.h` provides a host frame boundary for a synchronous transfer's
+input pump. These changes do not model device memory, TLS heap use, SD power-loss
+behavior or an actual ESP.restart. The firmware's local fixture tests are under
+`test/sudoku_download/`; no public release download is needed.
