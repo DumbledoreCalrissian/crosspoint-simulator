@@ -155,3 +155,5 @@ bool HalClock::formatDate(char *buf, size_t bufSize,
 }
 
 bool HalClock::syncFromNTP() { return _available; }
+
+bool HalClock::localTimeFresh(struct tm &out) const { return localTime(out); }
