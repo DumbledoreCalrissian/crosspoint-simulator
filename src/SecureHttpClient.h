@@ -209,6 +209,8 @@ class SecureHttpClient {
     const auto it = responseHeaders_.find(name);
     return it == responseHeaders_.end() ? "" : it->second;
   }
+  // Headers are kept one value per name here, so a repeated field shows its last value.
+  std::string getCombinedHeader(const char* lowercaseName) const { return getHeader(lowercaseName); }
   bool responseComplete() const {
     return (streaming_ ? streamComplete_ : http_.responseComplete()) && !callbackStopped_ && !aborted_;
   }

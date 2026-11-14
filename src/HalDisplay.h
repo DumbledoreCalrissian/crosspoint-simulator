@@ -31,6 +31,12 @@ public:
   GrayscaleCapabilities grayscaleCapabilities(
       GrayscaleMode mode = GrayscaleMode::Overlay) const;
   const char* controllerName() const;
+  // The simulated panel has no reading waveform or retained grayscale overlay.
+  void setReaderRefresh(bool) {}
+  bool displayRetainedGrayscaleOverlay(uint16_t, uint16_t, uint16_t, uint16_t,
+                                       bool) {
+    return false;
+  }
 
   // Constructor with pin configuration
   HalDisplay();
@@ -80,6 +86,8 @@ public:
 
   // Power management
   void deepSleep();
+  // No panel power state to keep in the simulator.
+  void controllerIdle() {}
 
   // Access to frame buffer
   uint8_t *getFrameBuffer() const;
