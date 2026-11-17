@@ -70,6 +70,8 @@ public:
   bool isDebouncePending() const { return false; }
   unsigned long getHeldTime() const;
   unsigned long getPowerButtonHeldTime() const;
+  // No separate raw line in the simulator: the debounced Power state stands in.
+  bool isPowerButtonPhysicallyPressed() const { return isPressed(BTN_POWER); }
   bool rawInputActive();
   bool wasCapacitivePagePressed() const;
   bool isCapacitivePagePressed(uint8_t buttonIndex) const;
