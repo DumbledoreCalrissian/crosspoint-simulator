@@ -457,7 +457,7 @@ quality, refresh behaviour, or memory pressure.
 
 ### Sudoku download QA
 
-The fork's `fix/picco-test-link` branch uses libcurl for SecureHttpClient's
+The fork's `main` branch uses libcurl for SecureHttpClient's
 callback API, streaming body chunks and polling cancellation during headers and
 body reads. Install the host's libcurl development headers/library (macOS Command
 Line Tools already supply them), and link the consuming simulator build with
