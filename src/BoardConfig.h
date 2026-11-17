@@ -239,6 +239,17 @@ struct ViewableInsets {
   uint8_t left = 3;
 };
 
+// How the board reports button presses (mirrors the SDK enum).
+enum class InputStyle : uint8_t {
+  XteinkAdcLadder,
+  DigitalButtons,
+  DigitalConfirmBackHold,
+  DigitalConfirmPowerHold,
+  DigitalFiveKey,
+  DigitalTwoButton,
+  OnePageAdcLadder,
+};
+
 struct BoardProfile {
   Board board;
   const char *name;
@@ -262,6 +273,7 @@ struct BoardProfile {
   uint8_t tabBarWidthPct = 100;
   uint8_t wifiMaxTxPower = 0;
   float uiScale = 1.0f;
+  InputStyle inputStyle = InputStyle::DigitalButtons;
 };
 
 #if defined(SIMULATOR_DISPLAY_UC8179)
