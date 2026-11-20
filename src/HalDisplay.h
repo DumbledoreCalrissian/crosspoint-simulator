@@ -31,8 +31,12 @@ public:
   GrayscaleCapabilities grayscaleCapabilities(
       GrayscaleMode mode = GrayscaleMode::Overlay) const;
   const char* controllerName() const;
+  const char* panelName() const { return nullptr; }
+
   // The simulated panel has no reading waveform or retained grayscale overlay.
   void setReaderRefresh(bool) {}
+  // The SDL preview already composes all grayscale levels.
+  void setOverlayFullTone(bool) {}
   bool displayRetainedGrayscaleOverlay(uint16_t, uint16_t, uint16_t, uint16_t,
                                        bool) {
     return false;
