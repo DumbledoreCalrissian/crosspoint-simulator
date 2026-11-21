@@ -29,3 +29,15 @@ inline int mbedtls_sha256_finish(mbedtls_sha256_context* ctx, unsigned char outp
 }
 #endif
 inline void mbedtls_sha256_free(mbedtls_sha256_context*) {}
+// One-shot hash, as in mbedtls; is224 is not supported.
+inline int mbedtls_sha256(const unsigned char* input, size_t size, unsigned char output[32], int is224) {
+  if (is224) return -1;
+  mbedtls_sha256_context ctx;
+  mbedtls_sha256_init(&ctx);
+  const int result = mbedtls_sha256_starts(&ctx, 0) || mbedtls_sha256_update(&ctx, input, size) ||
+                             mbedtls_sha256_finish(&ctx, output)
+                         ? -1
+                         : 0;
+  mbedtls_sha256_free(&ctx);
+  return result;
+}

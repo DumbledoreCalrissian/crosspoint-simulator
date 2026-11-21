@@ -57,6 +57,8 @@ public:
 
   // Get battery percentage (range 0-100)
   uint16_t getBatteryPercentage() const;
+  // One fresh reading; false when the battery cannot be read.
+  bool readBatteryPercentage(uint16_t &percent) const;
 
   // RAII helper class to manage power saving locks
   // Usage: create an instance of Lock in a scope to disable power saving, for
