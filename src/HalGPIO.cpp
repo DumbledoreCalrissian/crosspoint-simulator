@@ -325,10 +325,8 @@ void requestSimulatorSleep() {
 }
 
 bool buttonAvailable(int button) {
-  if (BoardConfig::isPicco())
-    return button == HalGPIO::BTN_CONFIRM || button == HalGPIO::BTN_POWER ||
-           button == HalGPIO::BTN_UP || button == HalGPIO::BTN_DOWN;
-  if (BoardConfig::isEegoA4())
+  // Picco and EEGO A4: only Power and the Up/Down keys.
+  if (BoardConfig::isPicco() || BoardConfig::isEegoA4())
     return button == HalGPIO::BTN_POWER || button == HalGPIO::BTN_UP ||
            button == HalGPIO::BTN_DOWN;
   if (!BoardConfig::isMetalioEInk4() && !BoardConfig::isMetalioEInk4Plus())

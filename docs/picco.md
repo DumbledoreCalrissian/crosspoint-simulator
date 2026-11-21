@@ -18,10 +18,10 @@ capability helpers and driver implementation define the host profile below.
   simulate the panel variants, waveforms or refresh timing.
 - `Tma525c` touch uses the shared orientation-aware mouse/tap/swipe path. There
   is no capacitive Home key. H and Metalio cover Prev/Next have no effect.
-- Up/Down map to the SDK's GPIO21/GPIO9 buttons; P maps to Power. Return exposes
-  the SDK's GPIO5 Confirm input, whose physical role is still marked unconfirmed
-  in that profile. Escape and Left/Right are disabled because those inputs are
-  unassigned. The simulator does not establish the physical GPIO5 mapping.
+- Up/Down map to the SDK's GPIO21/GPIO9 rocker; P maps to Power. These are the
+  device's only keys. Return, Escape and Left/Right are disabled, including
+  scripted `ENTER`, because the SDK profile has no Confirm, Back, Left or Right
+  input.
 - T changes the slide-switch position. `SWITCH_ON` and `SWITCH_OFF` scripted
   events select a position explicitly. `CROSSPOINT_SIM_SLIDE_SWITCH=on` sets the
   boot position; the default is off. The position persists across the host's
